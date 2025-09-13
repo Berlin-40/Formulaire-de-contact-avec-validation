@@ -2,10 +2,12 @@
 require_once __DIR__ . '/Domain/Entity/Contact.php';
 require_once __DIR__.'/Infrastructure/FileContactRepository.php';
 require_once __DIR__.'/UseCase/SaveContact.php';
+require_once __DIR__.'/UseCase/CheckContact.php';
 
 use Domain\Entity\Contact;
 use Infrastructure\FileContactRepository;
 use UseCase\SaveContact;
+use UseCase\CheckContact;
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $nom = $_POST["nom"];
@@ -21,6 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $repository = new FileContactRepository();
     $contact = $repository->findById(1);
     $save = new SaveContact($repository);
+    //var_dump($repository->findAll());
 
     //gestion du prenom
     if(strlen($prenom) < 3){
