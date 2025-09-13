@@ -13,13 +13,14 @@ class CheckContact{
     }
     public function execute($name):bool{
         $data = $this->repo->findAll();
-
+        
         foreach($data as $item){
+            echo $item;
             if($item->name == $name){
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }
 ?>

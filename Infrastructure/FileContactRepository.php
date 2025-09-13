@@ -9,7 +9,7 @@ use Domain\RepositoryInterface\ContactRepositoryInterface;
 
 class FileContactRepository implements ContactRepositoryInterface
 {
-    private $file_contact_bd = __DIR__. '../data/contacts.txt';
+    private $file_contact_bd = __DIR__. '/../data/contacts.txt';
     private Int $lastid = 0;
     public function __construct(){
         if(!file_exists($this->file_contact_bd)){
@@ -42,15 +42,16 @@ class FileContactRepository implements ContactRepositoryInterface
     }
 
     public function save(Contact $contact) {
-            $contact->setId($this->lastid);   
+            $contact->setId($this->lastid);
+            $this->lastid++;   
             $file = fopen($this->file_contact_bd,"a");
             fwrite($file, $contact->__toString());
             fclose($file);
     }
 
-    public function findAll(){
+    public function findAll():?array{
 
-        $file = fopen($this->file_contact_bd,"");
+        $file = fopen($this->file_contact_bd,"r");
         if (!$file) return null;
         $res = [];
         while(($line = fgets($file)) !== false){

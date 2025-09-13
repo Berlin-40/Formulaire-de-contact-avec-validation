@@ -17,8 +17,8 @@ class SaveContact{
     public function execute(Contact $contact):bool{
         
         $check = new CheckContact($this->repo);
-
-        if($check->execute($contact->nom)){
+        
+        if(!$check->execute($contact->nom)){
             $this->repo->save($contact);
             return true;
         }
