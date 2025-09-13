@@ -1,5 +1,10 @@
 <?php
 
+namespace UseCase;
+
+
+use Domain\RepositoryInterface\ContactRepositoryInterface;
+
 class CheckContact{
 
     private ContactRepositoryInterface $repo;

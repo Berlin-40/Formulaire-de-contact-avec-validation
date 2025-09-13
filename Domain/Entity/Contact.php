@@ -1,5 +1,5 @@
-
 <?php
+namespace Domain\Entity;
 
 class Contact{
     public $nom;
@@ -7,9 +7,22 @@ class Contact{
     public $message;
     public $email;
 
-    function toString($id){
-        return $id." Nom:".$this->nom." Prenom:".$this->prenom." Email:".$this->email." Message:".$this->message;
+    private $id;
+
+    function __construct($nom, $prenom, $email, $message){
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->message = $message;
+        $this->email = $email;
+        $this->id = null;
     }
+    function __toString(){
+        return $this->id.",".$this->nom.",".$this->prenom.",".$this->email.",".$this->message."\n";
+    }
+    public function setId($id) {
+        $this->id = $id;
+    }
+
 }
 
 ?>
